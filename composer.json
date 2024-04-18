@@ -6,9 +6,10 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "laracasts/flash": "^3.2",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
-      "ext-http": "*"
+        "php-flasher/flasher-toastr-laravel": "^1.15"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

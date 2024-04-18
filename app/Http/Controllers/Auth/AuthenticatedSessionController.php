@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use Flasher\Prime\Notification\NotificationInterface;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,18 +40,20 @@ class AuthenticatedSessionController extends Controller
         if ($return_var === 0) {
                 if ($output[0]==='True')
                 {
-                    return redirect()->intended(route('dashboard', absolute: false));
+                    toastr('Face Match',NotificationInterface::SUCCESS);
+                    return redirect()->route('dashboard');
                 }
                 else
                 {
                     Auth::logout();
-                    $request->session()->flash('error',"Face Doesn't match");
-                    return redirect()->intended(route('login', absolute: false));
+                    toastr("Faces don't match",NotificationInterface::ERROR);
+                    return redirect()->route('login');
                 }
         } else {
             Auth::logout();
-            $request->session()->flash('error', 'No Face Detected Please Try Again.');
-            return redirect()->intended(route('login', absolute: false));
+            toastr("No Face Detected",NotificationInterface::ERROR);
+            return redirect()->route('login');
+
         }
     }
 

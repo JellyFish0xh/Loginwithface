@@ -1,3 +1,4 @@
+
 <x-guest-layout>
     <form id="registration-form" method="POST" action="{{ secure_url(route('register')) }}" enctype="multipart/form-data">
         @csrf

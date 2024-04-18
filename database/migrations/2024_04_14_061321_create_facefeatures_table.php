@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('facefeatures', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->text('face_enc');
             $table->timestamps();
         });

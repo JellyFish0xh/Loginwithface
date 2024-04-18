@@ -1,12 +1,7 @@
 <x-guest-layout>
-    @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-    <form id="login-form" method="POST" action="{{secure_url(route('login'))  }}">
+        <form id="login-form" method="POST" action="{{secure_url(route('login'))  }}">
         @csrf
 
         <!-- Email Address -->

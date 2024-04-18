@@ -19,7 +19,7 @@ def compare_faces(_image_path, _id):
     mycursor = mydb.cursor()
     mycursor.execute("SELECT * FROM facefeatures WHERE id = %s LIMIT 1", (_id,))
     result = mycursor.fetchone()
-    face_enc = result[2]
+    face_enc = result[1]
     face_enc = np.fromstring(face_enc[1:-1], sep=',')
     frame = cv2.imread(_image_path)
     rgb_img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
