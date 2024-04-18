@@ -51,9 +51,13 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
         Auth::logout();
         exec('python ' . public_path('Python/Simple.py') . ' ' . public_path('Python/images/'), $output, $return_var);
+        if ($return_var === 0) {
+            return redirect()->intended(route('login', absolute: false));
+        }else{
+            $request->session()->flash('error', 'No Face Detected Please Try Again.');
+            return redirect()->intended(route('register', absolute: false));
+        }
 
-        // Redirect the user after registration
-        return redirect()->intended(route('login', absolute: false));
     }
 
 }

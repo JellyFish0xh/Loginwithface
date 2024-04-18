@@ -44,12 +44,13 @@ class AuthenticatedSessionController extends Controller
                 else
                 {
                     Auth::logout();
-                    $request->session()->flash('error', 'An error occurred. Please log in again.');
+                    $request->session()->flash('error',"Face Doesn't match");
                     return redirect()->intended(route('login', absolute: false));
                 }
         } else {
             Auth::logout();
-            return response()->json(['error' => 'Failed to execute Python script']);
+            $request->session()->flash('error', 'No Face Detected Please Try Again.');
+            return redirect()->intended(route('login', absolute: false));
         }
     }
 
